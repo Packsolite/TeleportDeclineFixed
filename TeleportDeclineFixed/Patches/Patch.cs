@@ -1,5 +1,6 @@
 ﻿using GameNetcodeStuff;
 using HarmonyLib;
+using TeleportDeclineFixed.Patches;
 using UnityEngine.InputSystem;
 
 namespace TeleportDecline.Patches
@@ -10,6 +11,7 @@ namespace TeleportDecline.Patches
         [HarmonyPostfix]
         static void PressTeleportButtonClientRpcPostfix(ShipTeleporter __instance)
         {
+            RadarPatch.ReplaceRadarIconTexture();
             if (__instance.isInverseTeleporter || StartOfRound.Instance.localPlayerController.isPlayerDead)
                 return;
 

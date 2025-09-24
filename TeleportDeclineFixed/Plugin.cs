@@ -47,6 +47,7 @@ namespace TeleportDecline
         {
             mls.LogInfo("Patching...");
             harmony.PatchAll(typeof(Patches.Patch));
+            harmony.PatchAll(typeof(TeleportDeclineFixed.Patches.RadarPatch));
             mls.LogInfo("Patched...");
         }
 
