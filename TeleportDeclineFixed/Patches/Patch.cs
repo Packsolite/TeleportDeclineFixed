@@ -10,15 +10,16 @@ namespace TeleportDecline.Patches
         [HarmonyPostfix]
         static void PressTeleportButtonClientRpcPostfix(ShipTeleporter __instance)
         {
-            if (StartOfRound.Instance.mapScreen.targetedPlayer != StartOfRound.Instance.localPlayerController ||
-                StartOfRound.Instance.localPlayerController.isPlayerDead ||
-                __instance.isInverseTeleporter)
+            if (__instance.isInverseTeleporter || StartOfRound.Instance.localPlayerController.isPlayerDead)
                 return;
 
-            HUDManager.Instance.DisplayTip("Teleporting!", "Press " + TeleportDeclineInput.instance.DeclineKey.GetBindingDisplayString().Split("|")[0] + "to stop teleport");
-
-            TeleportDeclineBase.instance.isTeleporting = true;
             TeleportDeclineBase.instance.teleporter = __instance;
+
+            if (StartOfRound.Instance.mapScreen.targetedPlayer == StartOfRound.Instance.localPlayerController)
+            {
+                HUDManager.Instance.DisplayTip("Teleporting!", "Press " + TeleportDeclineInput.instance.DeclineKey.GetBindingDisplayString().Split("|")[0] + "to stop teleport");
+                TeleportDeclineBase.instance.isTeleporting = true;
+            }
         }
 
         [HarmonyPatch(typeof(ShipTeleporter), "SetPlayerTeleporterId")]

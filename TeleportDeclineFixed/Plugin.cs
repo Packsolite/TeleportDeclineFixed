@@ -60,7 +60,7 @@ namespace TeleportDecline
             declining = true;
 
             TeleportDeclineNetcode.DeclineTeleportServerRpc();
-            mls.LogInfo("Stopped teleport!");
+            mls.LogInfo("Declining teleport...");
         }
     }
 
@@ -78,21 +78,23 @@ namespace TeleportDecline
         [ClientRpc]
         public static void DeclineTeleportClientRpc()
         {
-            if (TeleportDeclineBase.instance.declining)
+            var plugin = TeleportDeclineBase.instance;
+
+            if (plugin.declining)
             {
                 HUDManager.Instance.tipsPanelBody.text = "Teleport declined!";
-                TeleportDeclineBase.instance.declining = false;
+                plugin.declining = false;
             }
-            TeleportDeclineBase.instance.teleporter.StopCoroutine(TeleportDeclineBase.instance.teleporter.beamUpPlayerCoroutine);
+            plugin.teleporter.StopCoroutine(plugin.teleporter.beamUpPlayerCoroutine);
+            plugin.mls.LogInfo("Teleport was declined!");
 
-
-            if (TeleportDeclineBase.instance.isTeleporting || !StartOfRound.Instance.localPlayerController.isInHangarShipRoom) return;
+            if (plugin.isTeleporting || !StartOfRound.Instance.localPlayerController.isInHangarShipRoom) return;
 
             HUDManager.Instance.DisplayTip("Teleport Decline", "That teleport got declined");
 
-            if (TeleportDeclineBase.instance.isTeleporting)
+            if (plugin.isTeleporting)
             {
-                TeleportDeclineBase.instance.isTeleporting = false;
+                plugin.isTeleporting = false;
             }
         }
 
