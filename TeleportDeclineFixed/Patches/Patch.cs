@@ -9,7 +9,7 @@ namespace TeleportDecline.Patches
         [HarmonyPostfix]
         static void PressTeleportButtonClientRpcPostfix(ShipTeleporter __instance)
         {
-            if (StartOfRound.Instance.mapScreen.targetedPlayer != StartOfRound.Instance.localPlayerController || 
+            if (StartOfRound.Instance.mapScreen.targetedPlayer != StartOfRound.Instance.localPlayerController ||
                 StartOfRound.Instance.localPlayerController.isPlayerDead ||
                 __instance.isInverseTeleporter)
                 return;

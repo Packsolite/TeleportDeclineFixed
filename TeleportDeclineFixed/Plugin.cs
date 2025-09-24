@@ -1,12 +1,10 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-
-using UnityEngine.InputSystem;
 using LethalCompanyInputUtils.Api;
-
 using StaticNetcodeLib;
 using Unity.Netcode;
+using UnityEngine.InputSystem;
 
 namespace TeleportDecline
 {
@@ -15,8 +13,8 @@ namespace TeleportDecline
     [BepInDependency(StaticNetcodeLib.StaticNetcodeLib.Guid, BepInDependency.DependencyFlags.HardDependency)]
     public class TeleportDeclineBase : BaseUnityPlugin
     {
-        public const string GUID = "MasterAli2.TeleportDecline";
-        public const string NAME = "Teleport Decline";
+        public const string GUID = "MasterAli2.TeleportDeclineFixed";
+        public const string NAME = "Teleport Decline Fixed";
         public const string VERSION = "1.1.0";
         public const string AUTHOR = "MasterAli2";
 
@@ -79,7 +77,7 @@ namespace TeleportDecline
         public static void DeclineTeleportClientRpc()
         {
             if (TeleportDeclineBase.instance.isTeleporting || !StartOfRound.Instance.localPlayerController.isInHangarShipRoom) return;
-            
+
             HUDManager.Instance.DisplayTip("Teleport Decline", "That teleport got declined");
 
             if (TeleportDeclineBase.instance.isTeleporting)
