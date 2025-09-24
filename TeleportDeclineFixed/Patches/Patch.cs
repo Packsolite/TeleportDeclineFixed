@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using GameNetcodeStuff;
+using HarmonyLib;
 using UnityEngine.InputSystem;
 
 namespace TeleportDecline.Patches
@@ -27,6 +28,16 @@ namespace TeleportDecline.Patches
             if (TeleportDeclineBase.instance.teleporter != __instance) return;
 
             TeleportDeclineBase.instance.isTeleporting = false;
+        }
+
+        [HarmonyPatch(typeof(PlayerControllerB), "TeleportPlayer")]
+        [HarmonyPrefix]
+        static bool TeleportPlayer(ShipTeleporter __instance, UnityEngine.Vector3 pos, bool withRotation, float rot, bool allowInteractTrigger, bool enableController)
+        {
+            if (!TeleportDeclineBase.instance.declining) return true;
+            TeleportDeclineBase.instance.declining = false;
+            TeleportDeclineBase.instance.mls.LogWarning("Teleport decline not acknowledged by host. Desync may occur.");
+            return false;
         }
     }
 }

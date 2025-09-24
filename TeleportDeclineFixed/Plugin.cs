@@ -18,12 +18,14 @@ namespace TeleportDecline
         public const string VERSION = "1.1.0";
         public const string AUTHOR = "MasterAli2";
 
+
         private readonly Harmony harmony = new Harmony(GUID);
         internal ManualLogSource mls;
 
         public static TeleportDeclineBase instance;
 
         public bool isTeleporting = false;
+        public bool declining = false;
         public ShipTeleporter teleporter;
 
         void Awake()
@@ -55,7 +57,7 @@ namespace TeleportDecline
             StartOfRound.Instance.localPlayerController.beamUpParticle.Stop();
             HUDManager.Instance.tipsPanelBody.text = "Declining teleport...";
 
-            teleporter.StopCoroutine(teleporter.beamUpPlayerCoroutine);
+            declining = true;
 
             TeleportDeclineNetcode.DeclineTeleportServerRpc();
             mls.LogInfo("Stopped teleport!");
@@ -76,6 +78,14 @@ namespace TeleportDecline
         [ClientRpc]
         public static void DeclineTeleportClientRpc()
         {
+            if (TeleportDeclineBase.instance.declining)
+            {
+                HUDManager.Instance.tipsPanelBody.text = "Teleport declined!";
+                TeleportDeclineBase.instance.declining = false;
+            }
+            TeleportDeclineBase.instance.teleporter.StopCoroutine(TeleportDeclineBase.instance.teleporter.beamUpPlayerCoroutine);
+
+
             if (TeleportDeclineBase.instance.isTeleporting || !StartOfRound.Instance.localPlayerController.isInHangarShipRoom) return;
 
             HUDManager.Instance.DisplayTip("Teleport Decline", "That teleport got declined");
