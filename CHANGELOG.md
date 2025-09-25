@@ -1,3 +1,7 @@
+## Version 1.2.1
+- Fixed declining multiple times
+- Changed default hotkey to c
+
 ## Version 1.2.0
 - Fixed desync issues (requires mod to be installed on host)
 
