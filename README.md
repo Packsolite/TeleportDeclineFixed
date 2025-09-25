@@ -1,6 +1,10 @@
-# Teleport Decline
+# Teleport Decline Fixed
 ## Overview
-Teleport Decline is a mod for Lethal Company that enables you to prevent/decline a teleport.
+Teleport Decline Fixed is a fork of [Teleport Decline](https://github.com/MasterAli2/TeleportDecline), a mod for Lethal Company that enables you to prevent/decline a teleport.
+
+## Why forking?
+The original mod author has marked the mod as deprecated, indicating that it is no longer maintained. This fork aims to provide a maintained version of the original mod while fixing known issues.
+
 ## Dependencies
 
 Ensure that you have the following dependencies installed:
@@ -10,11 +14,11 @@ Ensure that you have the following dependencies installed:
 
 ## Usage/Examples
 
-When a teleport starts, a message will pop up instructing you to press the 'H' key (default keybind) to decline the teleport.
+When a teleport starts, a message will pop up instructing you to press the 'C' key (default keybind) to decline the teleport.
 
-To decline the teleport, press the 'H' key (default keybind), and a new popup will confirm to you that the teleport has been declined.
+To decline the teleport, press the 'C' key (default keybind), and a new popup will confirm to you that the teleport has been declined.
 
-Default keybind for declining: H
+Default keybind for declining: C
 
 This mod is client-side, meaning only you need to have it installed so it works for you.
 
@@ -27,17 +31,19 @@ or reach out on the [Discord Release Forum](https://discord.com/channels/1168655
 
 ### Teleport Popup:
 
-<img src="https://i.imgur.com/CmjiqGo.png"  width="500">
+<img src="https://cdn.smashmc.eu/lethal/decline.png"  width="500">
 
 ### Decline Confirmation:
 
-<img src="https://i.imgur.com/zRTBcoR.png"  width="500">
+<img src="https://cdn.smashmc.eu/lethal/declined.png"  width="500">
 
 ## Contributing
 
 If you wish to contribute to this project, please fork the repository and submit a pull request.
 
 ## Credits
+
+Original mod by MasterAli2
 
 Mod Idea by _Hect1c
 

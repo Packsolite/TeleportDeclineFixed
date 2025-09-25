@@ -68,7 +68,7 @@ namespace TeleportDecline
     {
         public static TeleportDeclineInput instance = new();
 
-        [InputAction("<Keyboard>/h", Name = "Decline Teleport")]
+        [InputAction("<Keyboard>/c", Name = "Decline Teleport")]
         public InputAction DeclineKey { get; set; }
     }
 
@@ -86,16 +86,12 @@ namespace TeleportDecline
                 plugin.declining = false;
             }
             plugin.teleporter.StopCoroutine(plugin.teleporter.beamUpPlayerCoroutine);
+            plugin.isTeleporting = false;
             plugin.mls.LogInfo("Teleport was declined!");
 
             if (plugin.isTeleporting || !StartOfRound.Instance.localPlayerController.isInHangarShipRoom) return;
 
             HUDManager.Instance.DisplayTip("Teleport Decline", "That teleport got declined");
-
-            if (plugin.isTeleporting)
-            {
-                plugin.isTeleporting = false;
-            }
         }
 
         [ServerRpc]

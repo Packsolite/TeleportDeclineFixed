@@ -1,3 +1,6 @@
+## Version 1.2.0
+- Fixed desync issues (requires mod to be installed on host)
+
 ## Version 1.1.0
 - Fixed Compatibility issues with some mods
 - General bug fix
