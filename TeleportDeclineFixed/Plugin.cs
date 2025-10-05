@@ -18,7 +18,6 @@ namespace TeleportDecline
         public const string VERSION = "1.1.0";
         public const string AUTHOR = "MasterAli2";
 
-
         private readonly Harmony harmony = new Harmony(GUID);
         internal ManualLogSource mls;
 
